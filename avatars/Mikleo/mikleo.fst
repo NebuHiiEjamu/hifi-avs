@@ -1,8 +1,8 @@
 name = Export Hifi Avatar
 type = body+head
 scale = 1
-texdir = 8b4625e4-947c-5416-8289-50335098efde.fbm/
-filename = 8b4625e4-947c-5416-8289-50335098efde.fbx
+texdir = 7eeb3ed0-273a-5060-8329-816e5cc6ad6c.fbm/
+filename = 7eeb3ed0-273a-5060-8329-816e5cc6ad6c.fbx
 joint = jointRoot = Hips
 joint = jointLean = Spine
 joint = jointNeck = Neck
