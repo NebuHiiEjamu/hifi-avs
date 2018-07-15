@@ -1,7 +1,7 @@
-name = Export Hifi Avatar
+name = Edna
 type = body+head
 scale = 1
-texdir = ea5521e7-c37b-5194-a9f0-ebe38d91134a.fbm/
+texdir = textures/
 filename = ea5521e7-c37b-5194-a9f0-ebe38d91134a.fbx
 joint = jointRoot = Hips
 joint = jointLean = Spine

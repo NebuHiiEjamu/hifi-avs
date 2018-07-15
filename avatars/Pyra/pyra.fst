@@ -1,7 +1,7 @@
-name = Export Hifi Avatar
+name = Pyra
 type = body+head
 scale = 1
-texdir = 070a9fa6-5436-5001-867b-b2cb5206edfc.fbm/
+texdir = textures/
 filename = 070a9fa6-5436-5001-867b-b2cb5206edfc.fbx
 joint = jointRoot = Hips
 joint = jointLean = Spine
