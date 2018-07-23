@@ -9,8 +9,8 @@
   var doorId;
   var curAngle = 0;
   var yaw = 0.0; // Z rotation in Blender
-  //var roll = 0.0; // Y
-  //var pitch = 0.0; // X
+  var roll = 0.0; // Y
+  var pitch = 0.0; // X
 
   function moveDoor(deltaTime) {
     if (!stopped) {
