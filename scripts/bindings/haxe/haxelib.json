@@ -1,0 +1,10 @@
+{
+  "name": "hifi",
+  "url": "https://highfidelity.com/",
+  "license": "Apache 2.0",
+  "tags": ["3d", "api", "cross-platform", "entity", "extern", "game", "gui",
+    "http", "javascript", "js", "sound", "ui", "web"],
+  "description": "Haxe bindings for the High Fidelity scripting API",
+  "version": "20180715",
+  "contributors": ["laphicetcrowe"]
+}
