@@ -1,6 +1,6 @@
 name = Export Hifi Avatar
 type = body+head
-scale = 0.95
+scale = 1
 texdir = Textures/
 filename = innominat.fbx
 joint = jointRoot = Hips
