@@ -1,3 +1,11 @@
+### Banjo
+Original character by Rareware\
+Model by [SAB64](https://www.deviantart.com/sab64/art/MMD-XPS-Model-Banjo-Kazooie-Download-671985035)
+
+### Daruk
+Original model by Nintendo\
+Optimizations by [Trikeboy](https://www.models-resource.com/wii_u/thelegendofzeldabreathofthewild/model/20391/)
+
 ### Edna
 ### Mikleo
 Original models by Bandai-Namco\
@@ -8,5 +16,5 @@ Original model by Compile Heart\
 Optimizations by haolink/Link#3939 (Discord)
 
 ### Pyra
-Original model by Monolith Soft
+Original model by Monolith Soft\
 Optimizations by [Jara Lowell](https://www.deviantart.com/jaralowell/art/Pyra-from-Xenoblade-Chronicles-2-in-MMD-739975671)
