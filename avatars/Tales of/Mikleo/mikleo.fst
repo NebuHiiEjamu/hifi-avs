@@ -15,3 +15,6 @@ freeJoint = LeftArm
 freeJoint = LeftForeArm
 freeJoint = RightArm
 freeJoint = RightForeArm
+bs = JawOpen = MouthOpen = 1
+bs = EyeBlink_L = Wink = 1
+bs = EyeBlink_R = WinkRight = 1
