@@ -16,4 +16,4 @@ freeJoint = RightArm
 freeJoint = RightForeArm
 bs = EyeBlink_L = EyeBlink_L = 1
 bs = EyeBlink_R = EyeBlink_R = 1
-bs = JawOpen = Jaw_Open = 1
+bs = JawOpen = Jaw_Open = 0.5

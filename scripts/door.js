@@ -76,5 +76,5 @@
                 position: Entities.getEntityProperties(entityID, "position").position);
             Script.update.connect(moveDoor);
         }
-    }
+    };
 });
