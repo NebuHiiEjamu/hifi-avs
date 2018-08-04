@@ -12,6 +12,7 @@
     var MOVE_X = 0;
     var MOVE_Z = 1;
     var MOVE_DIAGONAL = 2;
+    var MOVE_SENTINEL = 3;
 
     var currentPosition;
     var currentIdleTime = 0.0;
@@ -23,11 +24,15 @@
     var isMovingZ = false;
     var boarNum;
 
+    function randRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
     function randVec3() {
         return {
-            x: Math.random() * (MAX.x - MIN.x) + MIN.x,
+            x: randRange(MIN.x, MAX.x),
             y: currentPosition.y,
-            z: Math.random() * (MAX.z - MIN.z) + MIN.z,
+            z: randRange(MIN.z, MAX.z)
         };
     }
 
@@ -73,17 +78,17 @@
     function doAI(deltaTime) {
         if (isMoving) {
             targetPosition = randVec3();
-            determineMove = Math.floor(Math.random() * ((MOVE_DIAGONAL + 1) - MOVE_X) + MOVE_X);
+            determineMove = Math.floor(randRange(MOVE_X, MOVE_SENTINEL));
             Script.update.connect(move);
         } else {
-            idleInterval = Math.random() * (MAX_IDLE_INTERVAL - MIN_IDLE_INTERVAL) + MIN_IDLE_INTERVAL;
+            idleInterval = randRange(MIN_IDLE_INTERVAL, MAX_IDLE_INTERVAL);
             Script.update.connect(idle);
         }
     }
 
     this.preload = function(entityID) {
-        CENTER_POSITION = Entities.getEntityProperties(entityID, "position").position;
-        currentPosition = CENTER_POSITION;
+        currentPosition = Entities.getEntityProperties(entityID, "position").position;
+        CENTER_POSITION = currentPosition;
         boarNum = entityID;
         MIN_BOUNDS = {
             x: CENTER_POSITION.x - RADIUS,
