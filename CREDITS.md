@@ -12,7 +12,7 @@ Original models by Bandai-Namco\
 Optimizations by [MMD-Seraph](https://www.deviantart.com/mmd-seraph/art/MMD-Zestiria-Mikleo-DL-647236893)
 
 ### Jessie
-Original character by Nintendo
+Original character by Nintendo\
 Model by [CherryBeam](https://www.deviantart.com/cherrybeam/art/MMD-Team-Rocket-DL-570827235)
 
 ### Neptune
