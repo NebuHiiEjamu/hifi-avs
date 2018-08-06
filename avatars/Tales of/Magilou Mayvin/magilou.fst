@@ -1,7 +1,7 @@
 name = Export Hifi Avatar
 type = body+head
 scale = 1
-filename = magilou.fbx
+filename = ce19d73d-4e3c-5603-9b3c-52fedc962e6d.fbx
 texdir = textures
 joint = jointRoot = Hips
 joint = jointNeck = Neck
