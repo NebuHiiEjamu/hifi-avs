@@ -1,7 +1,7 @@
 name = Export Hifi Avatar
 type = body+head
 scale = 1
-texdir = Textures/
+texdir = textures/
 filename = 54660785-057c-59c8-948b-f75ad8d83a13.fbx
 joint = jointRoot = Hips
 joint = jointNeck = Neck
@@ -16,4 +16,4 @@ freeJoint = RightArm
 freeJoint = RightForeArm
 bs = EyeBlink_L = EyeBlink_L = 1
 bs = EyeBlink_R = EyeBlink_R = 1
-bs = JawOpen = Jaw_Open = 0.7
+bs = JawOpen = MouthOpen = 1
