@@ -77,7 +77,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 		CUSTOM_FLOW_DATA = {
 				"BackR": {
 						"active": true,
-						"stiffness": 0.6,
+						"stiffness": 0.3,
 						"radius": 0.01,
 						"gravity": -0.0096,
 						"damping": 0.85,
@@ -86,7 +86,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 				},
 				"BackL": {
 						"active": true,
-						"stiffness": 0.6,
+						"stiffness": 0.3,
 						"radius": 0.01,
 						"gravity": -0.0096,
 						"damping": 0.85,

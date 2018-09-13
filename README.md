@@ -5,6 +5,7 @@ CyberConnect2
 Monolith Soft
 Nintendo
 Rareware
+Square-Enix
 
 ## Modelers
 Bandai-Namco
@@ -13,10 +14,13 @@ Bandai-Namco
 Compile Heart
 CyberConnect2
 [Floramy](https://www.deviantart.com/floramy)
+[Lopieloo](https://www.deviantart.com/lopieloo)
 Monolith Soft
+[MrUncleBingo](https://www.deviantart.com/mrunclebingo)
 Nintendo
 [SAB64](https://www.deviantart.com/sab64)
 [Supurreme](https://www.deviantart.com/supurreme)
+[wadamen](https://www.deviantart.com/wadamen)
 
 ## Animators
 [DazzyAllen](https://www.deviantart.com/dazzyallen)
