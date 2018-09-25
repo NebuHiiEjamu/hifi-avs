@@ -1,0 +1,12 @@
+[package]
+name = "hifi-rs"
+description = "Bindings for the High Fidelity scripting API"
+version = "0.72.0"
+authors = ["Christian Meurin"]
+keywords = ["javascript"]
+license = "Apache 2.0"
+
+[dependencies]
+js-sys = "0.2.6"
+qtscript-sys = "0.1.0"
+wasm-bindgen = "0.2.21"
