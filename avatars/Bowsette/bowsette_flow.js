@@ -187,21 +187,21 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 				},
 				"RightBreastGoUp": {
 						"active": true,
-						"stiffness": 0.9,
+						"stiffness": 1.0,
 						"radius": 0.01,
-						"gravity": -0.009,
-						"damping": 0.85,
+						"gravity": -0.096,
+						"damping": 0.65,
 						"inertia": 0.8,
-						"delta": 0.85
+						"delta": 0.45
 				},
 				"LeftBreastGoUp": {
 						"active": true,
-						"stiffness": 0.9,
+						"stiffness": 1.0,
 						"radius": 0.01,
-						"gravity": -0.009,
-						"damping": 0.85,
+						"gravity": -0.096,
+						"damping": 0.65,
 						"inertia": 0.8,
-						"delta": 0.85
+						"delta": 0.45
 				},
 				"LeftHairGoUp": {
 						"active": true,
