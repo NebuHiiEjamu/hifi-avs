@@ -27,7 +27,7 @@ Nintendo\
 [SAB64](https://www.deviantart.com/sab64)\
 [ShadowlesWOLF](https://www.deviantart.com/shadowleswolf)\
 [Supurreme](https://www.deviantart.com/supurreme)\
-[The_Shadix](https://twitter.com/The_Shadix)
+[The_Shadix](https://twitter.com/The_Shadix)\
 [ToddynhoIce](https://www.deviantart.com/toddynhoice)\
 [wadamen](https://www.deviantart.com/wadamen)
 
