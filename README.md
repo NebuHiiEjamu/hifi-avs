@@ -32,7 +32,8 @@ Nintendo\
 [Tellisonk](https://www.deviantart.com/tellisonk)\
 [The_Shadix](https://twitter.com/The_Shadix)\
 [ToddynhoIce](https://www.deviantart.com/toddynhoice)\
-[wadamen](https://www.deviantart.com/wadamen)
+[wadamen](https://www.deviantart.com/wadamen)\
+[Xenosnake](https://bowlroll.net/user/2499)
 
 ## Animators
 [CherryBeam](https://www.deviantart.com/cherrybeam)\
