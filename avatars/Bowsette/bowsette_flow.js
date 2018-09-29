@@ -59,7 +59,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     
     var PRESET_FLOW_DATA = {
         "hair": {"active": true, "stiffness": 0.0, "gravity": -0.0096 ,"damping": 0.85, "inertia": 0.8, "delta": 0.55, "radius": 0.01}, 
-        "skirt": {"active": true, "stiffness": 0.0, "gravity": -0.0096 ,"damping": 0.85, "inertia": 0.25, "delta": 0.45, "radius": 0.01}, 
+        "Skirt": {"active": true, "stiffness": 0.0, "gravity": -0.0096 ,"damping": 0.85, "inertia": 0.25, "delta": 0.45, "radius": 0.01}, 
         "breasts": {"active": true, "stiffness": 1, "gravity": -0.0096 ,"damping": 0.65, "inertia": 0.8, "delta": 0.45, "radius": 0.01}
     };
     
@@ -77,7 +77,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 
     
 		CUSTOM_FLOW_DATA = {
-				"skirtl": {
+				"SkirtM": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -86,7 +86,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtk": {
+				"SkirtL": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -95,7 +95,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtj": {
+				"SkirtK": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -104,7 +104,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirti": {
+				"SkirtJ": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -113,7 +113,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirth": {
+				"SkirtI": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -122,7 +122,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtg": {
+				"SkirtH": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -131,7 +131,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtf": {
+				"SkirtG": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -140,7 +140,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirte": {
+				"SkirtF": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -149,7 +149,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtd": {
+				"SkirtE": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -158,7 +158,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtc": {
+				"SkirtD": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -167,7 +167,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirtb": {
+				"SkirtC": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
@@ -176,7 +176,16 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 						"inertia": 0.8,
 						"delta": 0.55
 				},
-				"skirta": {
+				"SkirtB": {
+						"active": true,
+						"stiffness": 0.5,
+						"radius": 0.01,
+						"gravity": -0.0096,
+						"damping": 0.85,
+						"inertia": 0.8,
+						"delta": 0.55
+				},
+				"SkirtA": {
 						"active": true,
 						"stiffness": 0.5,
 						"radius": 0.01,
