@@ -79,7 +79,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     CUSTOM_FLOW_DATA = {
         "InnerBackCoatRight": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -88,7 +88,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "OuterBackCoatRight": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -97,7 +97,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "SideCoatRight": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -106,7 +106,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "FrontCoatRight": {
             "active": true,
-            "stiffness": 0.4,
+            "stiffness": 0.5,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -115,7 +115,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "MiddleBackCoat": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -124,7 +124,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "InnerBackCoatLeft": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -133,7 +133,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "OuterBackCoatLeft": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -142,7 +142,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "SideCoatLeft": {
             "active": true,
-            "stiffness": 0.6,
+            "stiffness": 0.75,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
@@ -151,7 +151,79 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         },
         "FrontCoatLeft": {
             "active": true,
-            "stiffness": 0.4,
+            "stiffness": 0.5,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairBackRight": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairFrontRightSide": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairBackLeft": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairBackCenter": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairFrontLeftSide": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairFrontRight": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairFrontCenter": {
+            "active": true,
+            "stiffness": 1,
+            "radius": 0.01,
+            "gravity": -0.0096,
+            "damping": 0.85,
+            "inertia": 0.8,
+            "delta": 0.55
+        },
+        "HairFrontLeft": {
+            "active": true,
+            "stiffness": 1,
             "radius": 0.01,
             "gravity": -0.0096,
             "damping": 0.85,
