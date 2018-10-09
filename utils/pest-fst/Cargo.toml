@@ -1,0 +1,12 @@
+[package]
+name = "pest-fst"
+version = "0.1.0"
+description = "High Fidelity faceshift transform file parser"
+authors = ["Laphicet Crowe"]
+keywords = ["pest", "parser", "peg", "grammar"]
+categories = ["parsing"]
+license = "Apache-2.0"
+
+[dependencies]
+pest = "2.0.1"
+pest_derive = "2.0.1"
