@@ -19,7 +19,7 @@
     var audioObj;
 
     this.preload = function(entityID) {
-        SOUND = SundCache.getSound(Script.resolvePath(SOUND_URL));
+        SOUND = SoundCache.getSound(Script.resolvePath(SOUND_URL));
     };
 
     function moveDoor(deltaTime) {

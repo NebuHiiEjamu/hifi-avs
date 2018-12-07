@@ -3,6 +3,7 @@ extern crate qtscript_sys;
 extern crate wasm_bindgen;
 
 use js_sys::Object;
+use qtscript_sys::*;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]

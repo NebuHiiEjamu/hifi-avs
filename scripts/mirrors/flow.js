@@ -33,6 +33,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     
     var FLOW_JOINT_PREFIX = "flow";
     var SIM_JOINT_PREFIX = "sim";
+    
     var JOINT_COLLISION_PREFIX = "joint_";
     var HAND_COLLISION_PREFIX = "hand_";
     var HAND_COLLISION_RADIUS = 0.03;
@@ -43,6 +44,9 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     var DUMMY_KEYWORD = "Extra";
     var DUMMY_JOINT_COUNT = 8;
     var DUMMY_JOINT_DISTANCE = 0.05;
+    
+    var ISOLATED_JOINT_STIFFNESS = 0.85;
+    var ISOLATED_JOINT_LENGTH = 0.05;
         
     // Joint groups by keyword
 
@@ -905,7 +909,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         
         this.update = function () {
             var accelerationOffset = {x: 0, y: 0, z: 0};
-            if (!self.isDummy && self.recoveryPosition) {
+            if (self.recoveryPosition) {
                 var recoveryVector = VEC3.subtract(self.recoveryPosition, self.node.currentPosition);   
                 accelerationOffset = VEC3.multiply(recoveryVector, Math.pow(self.stiffness, 3));
             }
@@ -1159,20 +1163,23 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
             function(jointInfo){
                 var name = jointInfo.name;
                 var namesplit = name.split("_");
-                var isSimJoint = (name.substring(0, 3).toUpperCase() === SIM_JOINT_PREFIX.toUpperCase() && 
-                                    !isNaN(parseFloat(name[name.length-1])) && 
-                                    namesplit.length === 1);
+                console.log("FLOW checking: " + name);
+                var isSimJoint = (name.substring(0, 3).toUpperCase() === SIM_JOINT_PREFIX.toUpperCase());
                 var isFlowJoint = (namesplit.length > 2 && 
                                     namesplit[0].toUpperCase() === FLOW_JOINT_PREFIX.toUpperCase());
                 if (isFlowJoint || isSimJoint) {
-                    var group;
+                    var group = undefined;
                     if (isSimJoint) { 
+                    console.log("FLOW is sim: " + name);
                         for (var k = 1; k < name.length-1; k++) {
                             var subname = parseFloat(name.substring(name.length-k));
                             if (isNaN(subname) && name.length-k > SIM_JOINT_PREFIX.length) {
                                 group = name.substring(SIM_JOINT_PREFIX.length, name.length - k + 1);
                                 break;
                             }
+                        }
+                        if (group === undefined) {
+                            group = name.substring(SIM_JOINT_PREFIX.length, name.length - 1);
                         }
                     } else {
                         group = namesplit[1];
@@ -1221,7 +1228,28 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         for (i = 0; i < roots.length; i++) {
             var thread = new FlowThread(roots[i]);
             // add threads with at least 2 joints
-            if (thread.joints.length > 1) {
+            if (thread.joints.length > 0) {
+                if (thread.joints.length == 1) {
+                    var jointIndex = roots[i];
+                    var joint = flowJointData[jointIndex];
+                    var jointPosition = MyAvatar.getJointPosition(jointIndex);
+                    var settings = {
+                        "active": joint.node.active,
+                        "radius": joint.node.radius,
+                        "gravity": joint.node.gravity,
+                        "damping": joint.node.damping,
+                        "inertia": joint.node.inertia,
+                        "delta": joint.node.delta,
+                        "stiffness": ISOLATED_JOINT_STIFFNESS                   
+                    }
+                    var extraIndex = flowJointData.length;
+                    flowJointData[extraIndex] = new FlowJointDummy(jointPosition, extraIndex, jointIndex, -1, settings);
+                    flowJointData[extraIndex].isDummy = false;
+                    flowJointData[extraIndex].length = ISOLATED_JOINT_LENGTH;
+                    flowJointData[jointIndex].childIndex = extraIndex;
+                    flowJointData[extraIndex].group = flowJointData[jointIndex].group;
+                    thread = new FlowThread(jointIndex);
+                }
                 flowThreads.push(thread);
             }
         }

@@ -5,16 +5,15 @@ fst = { SOI ~ name ~ type ~ scale ~ filename ~ texdir ~ (joint | free_joint | bs
 uint = @{ ASCII_DIGIT+ }
 float = @{ '-'? ~ uint ~ ('.' ~ uint)? }
 path = @{ ('!'..'9' | ';'..'~')* }
-name_id = @{ ASCII_ALPHANUMERIC ~ (ASCII_ALPHANUMERIC | ' ')* }
-id = @{ ASCII_ALPHANUMERIC ~ (ASCII_ALPHANUMERIC | '_')* }
+ident = @{ ASCII_ALPHANUMERIC ~ (ASCII_ALPHANUMERIC | '_')* }
 
-name = { "name" ~ '=' ~ name_id }
+name = { "name" ~ '=' ~ ASCII_ALPHANUMERIC ~ (ASCII_ALPHANUMERIC | ' ')* }
 type = { "type" ~ '=' ~ "body+head" }
 scale = { "scale" ~ '=' ~ float }
 filename = { "filename" ~ '=' ~ path }
 texdir = { "texdir" ~ '=' ~ path }
-joint = { "joint" ~ '=' ~ ("jointRoot" | "jointLean" | "jointNeck" | "jointHead" | "jointEyeRight" | "jointEyeLeft" | "jointRightHand" | "jointLeftHand") ~ '=' ~ id }
-free_joint = { "freeJoint" ~ '=' ~ id }
-bs = { "bs" ~ '=' ~ ("BrowsD_L" | "BrowsD_R" | "CheekSquint_L" | "CheekSquint_R" | "EyeBlink_L" | "EyeBlink_R" | "EyeDown_L" | "EyeDown_R" | "EyeIn_L" | "EyeIn_R" | "EyeOpen_L" | "EyeOpen_R" | "EyeOut_L" | "EyeOut_R" | "EyeUp_L" | "EyeUp_R" | "JawOpen" | "LipsFunnel" | "LipsLowerDown" | "LipsPucker" | "LipsStretch_L" | "LipsStretch_R" | "LipsUpperUp" | "MouthDimple_L" | "MouthDimple_R" | "MouthFrown_L" | "MouthFrown_R" | "MouthLeft" | "MouthRight" | "MouthSmile_L" | "MouthSmile_R" | "Puff" | "Sneer") ~ '=' ~ id ~ '=' ~ float }
+joint = { "joint" ~ '=' ~ ("jointRoot" | "jointLean" | "jointNeck" | "jointHead" | "jointEyeRight" | "jointEyeLeft" | "jointRightHand" | "jointLeftHand") ~ '=' ~ ident }
+free_joint = { "freeJoint" ~ '=' ~ ident }
+bs = { "bs" ~ '=' ~ ("BrowsD_L" | "BrowsD_R" | "BrowsU_C" | "BrowsU_L" | "BrowsU_R" | "CheekSquint_L" | "CheekSquint_R" | "ChinLowerRaise" | "ChinUpperRaise" | "EyeBlink_L" | "EyeBlink_R" | "EyeDown_L" | "EyeDown_R" | "EyeIn_L" | "EyeIn_R" | "EyeOpen_L" | "EyeOpen_R" | "EyeOut_L" | "EyeOut_R" | "EyeSquint_L" | "EyeSquint_R" | "EyeUp_L" | "EyeUp_R" | "JawChew" | "JawFwd" | "JawLeft" | "JawOpen" | "JawRight" | "LipsFunnel" | "LipsLowerDown" | "LipsPucker" | "LipsStretch_L" | "LipsStretch_R" | "LipsUpperUp" | "MouthDimple_L" | "MouthDimple_R" | "MouthFrown_L" | "MouthFrown_R" | "MouthLeft" | "MouthRight" | "MouthSmile_L" | "MouthSmile_R" | "Puff" | "Sneer") ~ '=' ~ ident ~ '=' ~ float }
 lod = { "lod" ~ '=' ~ path ~ uint }
-joint_index = { "jointIndex" ~ '=' ~ id ~ '=' ~ uint }
+joint_index = { "jointIndex" ~ '=' ~ ident ~ '=' ~ uint }
