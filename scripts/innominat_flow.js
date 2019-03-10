@@ -33,6 +33,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 
     var FLOW_JOINT_PREFIX = "flow";
     var SIM_JOINT_PREFIX = "sim";
+
     var JOINT_COLLISION_PREFIX = "joint_";
     var HAND_COLLISION_PREFIX = "hand_";
     var HAND_COLLISION_RADIUS = 0.03;
@@ -43,6 +44,9 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     var DUMMY_KEYWORD = "Extra";
     var DUMMY_JOINT_COUNT = 8;
     var DUMMY_JOINT_DISTANCE = 0.05;
+
+    var ISOLATED_JOINT_STIFFNESS = 0.85;
+    var ISOLATED_JOINT_LENGTH = 0.05;
 
     // Joint groups by keyword
 
@@ -73,7 +77,6 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     var CUSTOM_FLOW_DATA, CUSTOM_COLLISION_DATA;
 
     // CUSTOM DATA STARTS HERE
-
 
 
     CUSTOM_FLOW_DATA = {
@@ -263,7 +266,6 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     };
 
 
-
     // CUSTOM DATA ENDS HERE
 
     var HAND_COLLISION_JOINTS = ["RightHandMiddle1", "RightHandThumb3", "LeftHandMiddle1", "LeftHandThumb3","RightHandMiddle3", "LeftHandMiddle3"];
@@ -272,6 +274,8 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         FLOW_JOINT_KEYWORDS.push(DUMMY_KEYWORD);
         FLOW_JOINT_DATA[DUMMY_KEYWORD] = DEFAULT_JOINT_SETTINGS.get();
     }
+
+    var avatarScale = MyAvatar.scale;
 
     var FlowDebug = function() {
         var self = this;
@@ -774,7 +778,6 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         this.modifyCollision = function(jointName, parameter, value) {
             var jointIndex = MyAvatar.getJointIndex(jointName);
             var collisionIndex = self.findCollisionWithJoint(jointIndex);
-            var avatarScale = MyAvatar.scale;
             if (collisionIndex > -1) {
                 switch(parameter) {
                     case "radius": {
@@ -972,11 +975,10 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
 
                 // Add offset
                 self.acceleration = VEC3.sum(self.acceleration, accelerationOffset);
-
                 // Calculate new position
                 self.currentPosition = VEC3.sum(
                     VEC3.sum(self.currentPosition, VEC3.multiply(self.currentVelocity, self.damping)),
-                    VEC3.multiply(self.acceleration, Math.pow(self.delta, 2))
+                    VEC3.multiply(self.acceleration, Math.pow((self.delta * avatarScale), 2))
                 );
             } else {
                 self.acceleration = {x:0, y:0, z:0};
@@ -1039,10 +1041,11 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         this.translationDirection = VEC3.normalize(this.initialXform.pos);
 
         this.length = VEC3.length(VEC3.subtract(this.initialPosition, MyAvatar.getJointPosition(self.parentIndex)));
+        this.originalLength = this.length / avatarScale;
 
         this.update = function () {
             var accelerationOffset = {x: 0, y: 0, z: 0};
-            if (!self.isDummy && self.recoveryPosition) {
+            if (self.recoveryPosition) {
                 var recoveryVector = VEC3.subtract(self.recoveryPosition, self.node.currentPosition);
                 accelerationOffset = VEC3.multiply(recoveryVector, Math.pow(self.stiffness, 3));
             }
@@ -1085,8 +1088,16 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         var self = this;
         this.joints = [];
         this.positions = [];
-        this.radius = 0;
-        this.length = 0;
+        this.radius = 0.0;
+        this.length = 0.0;
+
+        this.resetLength = function() {
+            self.length = 0.0;
+            for (i = 1; i < self.joints.length; i++) {
+                var index = self.joints[i];
+                self.length += flowJointData[index].length;
+            }
+        }
 
         this.computeThread = function(rootIndex) {
             var parentIndex = rootIndex;
@@ -1285,8 +1296,11 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         for (var i = 0; i < flowThreads.length; i++) {
             for (var j = 0; j < flowThreads[i].joints.length; j++){
                 var joint = flowJointData[flowThreads[i].joints[j]];
-                joint.node.radius = joint.node.initialRadius * scale;
+                var deltaScale =  joint.node.initialRadius * scale / joint.node.radius;
+                joint.node.radius *= deltaScale;
+                joint.length = joint.originalLength * scale;
             }
+            flowThreads[i].resetLength();
         }
     };
 
@@ -1296,20 +1310,23 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
             function(jointInfo){
                 var name = jointInfo.name;
                 var namesplit = name.split("_");
-                var isSimJoint = (name.substring(0, 3).toUpperCase() === SIM_JOINT_PREFIX.toUpperCase() &&
-                                    !isNaN(parseFloat(name[name.length-1])) &&
-                                    namesplit.length === 1);
+                console.log("FLOW checking: " + name);
+                var isSimJoint = (name.substring(0, 3).toUpperCase() === SIM_JOINT_PREFIX.toUpperCase());
                 var isFlowJoint = (namesplit.length > 2 &&
                                     namesplit[0].toUpperCase() === FLOW_JOINT_PREFIX.toUpperCase());
                 if (isFlowJoint || isSimJoint) {
-                    var group;
+                    var group = undefined;
                     if (isSimJoint) {
+                    console.log("FLOW is sim: " + name);
                         for (var k = 1; k < name.length-1; k++) {
                             var subname = parseFloat(name.substring(name.length-k));
                             if (isNaN(subname) && name.length-k > SIM_JOINT_PREFIX.length) {
                                 group = name.substring(SIM_JOINT_PREFIX.length, name.length - k + 1);
                                 break;
                             }
+                        }
+                        if (group === undefined) {
+                            group = name.substring(SIM_JOINT_PREFIX.length, name.length - 1);
                         }
                     } else {
                         group = namesplit[1];
@@ -1358,7 +1375,28 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
         for (i = 0; i < roots.length; i++) {
             var thread = new FlowThread(roots[i]);
             // add threads with at least 2 joints
-            if (thread.joints.length > 1) {
+            if (thread.joints.length > 0) {
+                if (thread.joints.length == 1) {
+                    var jointIndex = roots[i];
+                    var joint = flowJointData[jointIndex];
+                    var jointPosition = MyAvatar.getJointPosition(jointIndex);
+                    var settings = {
+                        "active": joint.node.active,
+                        "radius": joint.node.radius,
+                        "gravity": joint.node.gravity,
+                        "damping": joint.node.damping,
+                        "inertia": joint.node.inertia,
+                        "delta": joint.node.delta,
+                        "stiffness": ISOLATED_JOINT_STIFFNESS
+                    }
+                    var extraIndex = flowJointData.length;
+                    flowJointData[extraIndex] = new FlowJointDummy(jointPosition, extraIndex, jointIndex, -1, settings);
+                    flowJointData[extraIndex].isDummy = false;
+                    flowJointData[extraIndex].length = ISOLATED_JOINT_LENGTH;
+                    flowJointData[jointIndex].childIndex = extraIndex;
+                    flowJointData[extraIndex].group = flowJointData[jointIndex].group;
+                    thread = new FlowThread(jointIndex);
+                }
                 flowThreads.push(thread);
             }
         }
@@ -1383,7 +1421,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
             var extraThread = new FlowThread(jointCount);
             flowThreads.push(extraThread);
         }
-        setFlowScale(MyAvatar.scale);
+        setFlowScale(avatarScale);
     };
 
 
@@ -1431,8 +1469,9 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
     });
 
     MyAvatar.scaleChanged.connect(function(){
+        avatarScale = MyAvatar.scale;
         if (isActive) {
-            setFlowScale(MyAvatar.scale);
+            setFlowScale(avatarScale);
         }
     });
 
@@ -1488,7 +1527,7 @@ Script.include(Script.resolvePath("https://hifi-content.s3.amazonaws.com/luis/fl
                             joint.stiffness = floatVal;
                         } else if (name === "radius") {
                             joint.node.initialRadius = floatVal;
-                            joint.node.radius = MyAvatar.scale*floatVal;
+                            joint.node.radius = avatarScale*floatVal;
                         }
                         else {
                             joint.node[name] = floatVal;
